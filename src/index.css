@@ -1,0 +1,710 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  :root,
+  [data-theme="dark"] {
+    --background: #080C0A;
+    --foreground: #F2F5F2;
+    --surface: #111713;
+    --surface-secondary: #161D18;
+    --surface-tertiary: #1C251F;
+    --card: #121914;
+    --card-hover: #192119;
+    --border: #29332C;
+    --border-strong: #3A463D;
+    --text-primary: #F2F5F2;
+    --text-secondary: #B4BDB6;
+    --text-muted: #7F8B82;
+    --input-background: #111713;
+    --input-border: #354137;
+    --sidebar: #0C110E;
+    --topbar: #0C110E;
+    --shadow: rgba(0, 0, 0, 0.35);
+    --accent: #6F944C;
+    --accent-hover: #83A95E;
+    --hero-bg: radial-gradient(ellipse 90% 70% at 50% 30%, #1c2b18 0%, #0d140e 55%, #060907 100%);
+    --hero-overlay: linear-gradient(to bottom, rgba(4, 10, 6, 0.45) 0%, rgba(2, 6, 4, 0.75) 100%);
+    --hero-heading: #F5F7F5;
+    --hero-subheading: #C6D4C8;
+    --hero-description: #9FB2A3;
+    --hero-accent: #3EC9A7;
+    --hero-label: #72C9AE;
+    --hero-grid: rgba(90, 150, 120, 0.10);
+    --hero-hud: rgba(62, 201, 167, 0.35);
+    --hero-aircraft: rgba(255, 255, 255, 0.3);
+    --hero-badge-bg: rgba(6, 20, 12, 0.75);
+    --hero-badge-border: rgba(62, 201, 167, 0.45);
+    --hero-btn-bg: linear-gradient(135deg, #5a7633 0%, #465c26 100%);
+    --hero-btn-hover: linear-gradient(135deg, #6b8c3d 0%, #526c2e 100%);
+    --hero-btn-text: #ffffff;
+    --hero-btn-border: rgba(183, 207, 154, 0.45);
+    --hero-btn-shadow: 0 0 35px rgba(140, 170, 80, 0.45);
+    --map-bg: #0b1124;
+  }
+
+  /* ==========================================================================
+     LIGHT THEME — "daylight tactical command" palette
+     Soft sage-slate surfaces (no pure white), charcoal-slate text,
+     low-contrast borders, restrained shadows. Depth stack:
+     background < sidebar < surface < card (progressively lighter).
+     ========================================================================== */
+  [data-theme="light"] {
+    --background: #E1E6E3;
+    --foreground: #1A231E;
+    --surface: #ECEFED;
+    --surface-secondary: #E3E8E4;
+    --surface-tertiary: #D4DBD6;
+    --card: #F0F3F1;
+    --card-hover: #F6F8F6;
+    --border: #C5CFC8;
+    --border-strong: #A8B4AC;
+    --text-primary: #1A231E;
+    --text-secondary: #3E4A43;
+    --text-muted: #5B675E;
+    --input-background: #F4F7F5;
+    --input-border: #B2BFB5;
+    --sidebar: #E9ECE9;
+    --topbar: #ECEFED;
+    --shadow: rgba(26, 36, 30, 0.10);
+    --accent: #476A2C;
+    --accent-hover: #385523;
+    --hero-bg: radial-gradient(ellipse 90% 70% at 50% 25%, #C7D4C9 0%, #DEE5DF 48%, #C2CFC5 100%);
+    --hero-overlay: linear-gradient(to bottom, rgba(238, 242, 239, 0.10) 0%, rgba(206, 216, 209, 0.55) 100%);
+    --hero-heading: #0F1A13;
+    --hero-subheading: #22352A;
+    --hero-description: #3E5044;
+    --hero-accent: #0F6E4A;
+    --hero-label: #176548;
+    --hero-grid: rgba(20, 70, 40, 0.08);
+    --hero-hud: rgba(15, 110, 74, 0.38);
+    --hero-aircraft: rgba(20, 45, 30, 0.45);
+    --hero-badge-bg: rgba(240, 244, 241, 0.85);
+    --hero-badge-border: rgba(15, 110, 74, 0.30);
+    --hero-btn-bg: linear-gradient(135deg, #436024 0%, #32471a 100%);
+    --hero-btn-hover: linear-gradient(135deg, #4f722b 0%, #3a531e 100%);
+    --hero-btn-text: #ffffff;
+    --hero-btn-border: rgba(67, 96, 36, 0.6);
+    --hero-btn-shadow: 0 10px 26px -8px rgba(50, 71, 26, 0.35);
+    --map-bg: #DCE3E0;
+  }
+
+  body,
+  #root {
+    background-color: var(--background);
+    color: var(--text-primary);
+    min-height: 100vh;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  body {
+    @apply antialiased font-sans;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+@layer components {
+  .app-shell {
+    @apply min-h-screen;
+    background-color: var(--background);
+  }
+
+  .grid-bg {
+    background-image:
+      linear-gradient(to right, rgba(120, 140, 120, 0.07) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(120, 140, 120, 0.07) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .panel {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -12px var(--shadow);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px -12px var(--shadow);
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease, background-color 0.2s ease;
+  }
+
+  .card:hover {
+    background: var(--card-hover);
+  }
+
+  .glass {
+    background: color-mix(in srgb, var(--surface) 78%, transparent);
+    backdrop-filter: blur(14px);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+  }
+
+  .text-body {
+    color: var(--text-primary);
+  }
+
+  .text-muted {
+    color: var(--text-muted);
+  }
+
+  .progress-track {
+    @apply h-2 w-full rounded-full overflow-hidden;
+    background: var(--surface-tertiary);
+  }
+
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-700 ease-out;
+  }
+
+  .status-dot {
+    @apply inline-block w-2.5 h-2.5 rounded-full;
+    transition: box-shadow 0.3s;
+  }
+
+  .status-dot.pulse-red {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5);
+    animation: pulse 1.4s infinite;
+  }
+
+  .status-dot.pulse-amber {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.5);
+    animation: pulse 1.4s infinite;
+  }
+
+  .status-dot.pulse-green {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5);
+    animation: pulse 1.4s infinite;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-sm font-semibold transition;
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 10px 24px -10px var(--shadow);
+  }
+
+  .btn-primary:hover {
+    filter: brightness(1.08);
+    transform: translateY(-1px);
+    background: var(--accent-hover);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border px-5 py-2.5 text-sm font-semibold transition;
+    border-color: var(--border);
+    color: var(--text-primary);
+    background: var(--surface-secondary);
+  }
+
+  .btn-ghost:hover {
+    background: var(--surface-tertiary);
+  }
+
+  .kicker {
+    @apply text-[11px] font-semibold uppercase tracking-[0.18em];
+    color: var(--text-muted);
+  }
+
+  .sidebar {
+    @apply fixed inset-y-0 left-0 z-40 w-64 flex flex-col transform -translate-x-full transition-transform duration-300 ease-in-out;
+    background: var(--sidebar);
+    border-right: 1px solid var(--border);
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  @media (min-width: 768px) {
+    .sidebar {
+      transform: translateX(0);
+    }
+  }
+
+  .nav-link {
+    @apply flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition;
+    color: var(--text-muted);
+  }
+
+  .nav-link:hover {
+    color: var(--text-primary);
+    background: var(--surface-tertiary);
+  }
+
+  .nav-link.active {
+    color: var(--text-primary);
+    background: var(--surface-secondary);
+    border: 1px solid var(--border-strong);
+    box-shadow: inset 2px 0 0 var(--accent);
+  }
+
+  .overlay {
+    @apply fixed inset-0 z-30 bg-black/50 backdrop-blur-sm;
+  }
+
+  .input {
+    @apply w-full rounded-xl border px-4 py-2.5 text-sm outline-none transition;
+    border-color: var(--input-border);
+    background: var(--input-background);
+    color: var(--text-primary);
+  }
+
+  .input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
+  }
+
+  .input::placeholder,
+  textarea::placeholder,
+  select.input option {
+    color: var(--text-muted);
+  }
+
+  table thead {
+    background: var(--surface-secondary);
+  }
+
+  table th {
+    color: var(--text-muted);
+  }
+
+  table td {
+    color: var(--text-secondary);
+    border-color: var(--border);
+  }
+}
+
+/* map surface */
+.bg-\[\#0b1124\] {
+  background-color: var(--map-bg) !important;
+}
+
+[data-theme="light"] svg text {
+  fill: #3E4A43;
+}
+
+/* soften chart grid lines in light theme */
+[data-theme="light"] .recharts-cartesian-grid line {
+  stroke: rgba(61, 74, 67, 0.16);
+}
+
+/* hero overlay & styles */
+.hero-container {
+  background-color: var(--background);
+}
+
+.hero-bg-layer {
+  background-image: var(--hero-bg);
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-scrim {
+  background: var(--hero-overlay);
+}
+
+.hero-heading {
+  color: var(--hero-heading);
+}
+
+.hero-subheading {
+  color: var(--hero-subheading);
+}
+
+.hero-description {
+  color: var(--hero-description);
+}
+
+.hero-accent-text {
+  color: var(--hero-accent);
+}
+
+.hero-label-text {
+  color: var(--hero-label);
+}
+
+.hero-grid-bg {
+  background-image:
+    linear-gradient(to right, var(--hero-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--hero-grid) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.hero-badge {
+  background: var(--hero-badge-bg);
+  border: 1px solid var(--hero-badge-border);
+  color: var(--hero-label);
+  backdrop-filter: blur(8px);
+}
+
+.hero-aircraft {
+  color: var(--hero-aircraft);
+}
+
+.hero-hud-stroke {
+  border-color: var(--hero-hud);
+}
+
+.hero-hud-fill {
+  background: var(--hero-hud);
+}
+
+.hero-scan {
+  background: linear-gradient(to bottom, transparent, var(--hero-hud), transparent);
+}
+
+.hero-cta-btn {
+  background: var(--hero-btn-bg);
+  color: var(--hero-btn-text) !important;
+  border: 1px solid var(--hero-btn-border);
+  box-shadow: var(--hero-btn-shadow);
+}
+
+.hero-cta-btn:hover {
+  background: var(--hero-btn-hover);
+  color: var(--hero-btn-text) !important;
+}
+
+/* stage transition */
+@keyframes screenFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.screen-fade {
+  animation: screenFadeIn 0.45s ease-out both;
+}
+
+/* thin scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.45);
+  }
+
+  70% {
+    box-shadow: 0 0 0 7px rgba(16, 185, 129, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+/* ==========================================================================
+   LIGHT THEME — systematic neutralization of hardcoded dark-theme utilities
+   (every rule below is scoped to [data-theme="light"]; dark theme is
+   intentionally untouched)
+   ========================================================================== */
+
+/* ---------- text hierarchy ---------- */
+[data-theme="light"] .text-white,
+[data-theme="light"] .text-slate-100,
+[data-theme="light"] .text-slate-200,
+[data-theme="light"] .text-white\/90 {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .text-slate-300,
+[data-theme="light"] .text-slate-400,
+[data-theme="light"] .text-white\/80 {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="light"] .text-slate-500,
+[data-theme="light"] .text-slate-600,
+[data-theme="light"] .text-white\/50 {
+  color: var(--text-muted) !important;
+}
+
+[data-theme="light"] .hover\:text-white:hover,
+[data-theme="light"] .group:hover .group-hover\:text-white {
+  color: var(--text-primary) !important;
+}
+
+/* ---------- status & signal text (deepened for light surfaces) ---------- */
+[data-theme="light"] .text-emerald-200,
+[data-theme="light"] .text-emerald-300,
+[data-theme="light"] .text-emerald-400 {
+  color: #047857 !important;
+}
+
+[data-theme="light"] .text-amber-200,
+[data-theme="light"] .text-amber-300,
+[data-theme="light"] .text-amber-400 {
+  color: #b45309 !important;
+}
+
+[data-theme="light"] .text-red-300,
+[data-theme="light"] .text-red-400 {
+  color: #dc2626 !important;
+}
+
+[data-theme="light"] .text-sky-200,
+[data-theme="light"] .text-sky-300 {
+  color: #0369a1 !important;
+}
+
+[data-theme="light"] .hover\:text-red-300:hover {
+  color: #b91c1c !important;
+}
+
+[data-theme="light"] .hover\:text-sky-200:hover {
+  color: #075985 !important;
+}
+
+/* ---------- tactical olive identity: dark-on-light variants ---------- */
+[data-theme="light"] .text-\[\#b7c79a\],
+[data-theme="light"] .text-\[\#c9d8ac\],
+[data-theme="light"] .text-\[\#c7dca6\],
+[data-theme="light"] .text-\[\#d3e2b3\],
+[data-theme="light"] .group:hover .group-hover\:text-\[\#d3e2b3\] {
+  color: #244a19 !important;
+}
+
+[data-theme="light"] .text-\[\#9caf88\] {
+  color: var(--accent) !important;
+}
+
+[data-theme="light"] .text-\[\#9aa7c7\] {
+  color: var(--text-muted) !important;
+}
+
+/* ---------- translucent dark surfaces → light tactical surfaces ---------- */
+[data-theme="light"] .bg-white\/5 {
+  background: var(--surface-secondary) !important;
+}
+
+[data-theme="light"] .bg-white\/10 {
+  background: var(--surface-tertiary) !important;
+}
+
+[data-theme="light"] .bg-white\/\[0\.015\],
+[data-theme="light"] .bg-white\/\[0\.02\] {
+  background: var(--surface-secondary) !important;
+}
+
+[data-theme="light"] .hover\:bg-white\/5:hover,
+[data-theme="light"] .hover\:bg-white\/10:hover {
+  background: var(--surface-tertiary) !important;
+}
+
+/* glass header strip over the hero */
+[data-theme="light"] .bg-black\/20 {
+  background: color-mix(in srgb, var(--surface) 68%, transparent) !important;
+}
+
+/* inset wells / option rows */
+[data-theme="light"] .bg-black\/30 {
+  background: var(--surface-secondary) !important;
+}
+
+/* panels */
+[data-theme="light"] .bg-black\/40,
+[data-theme="light"] .bg-black\/50 {
+  background: var(--card) !important;
+}
+
+/* modal scrim: dark translucent veil keeps the modal readable */
+[data-theme="light"] .bg-black\/70 {
+  background: rgba(22, 30, 25, 0.45) !important;
+}
+
+/* dark slate control surfaces (sliders, chips, checkboxes) */
+[data-theme="light"] .bg-slate-700,
+[data-theme="light"] .bg-slate-800,
+[data-theme="light"] .bg-slate-700\/60 {
+  background-color: var(--surface-tertiary) !important;
+}
+
+[data-theme="light"] .bg-\[\#070b16\],
+[data-theme="light"] .bg-\[\#0B0F0D\] {
+  background-color: var(--background) !important;
+}
+
+[data-theme="light"] .bg-\[\#0d1430\],
+[data-theme="light"] .bg-\[\#0a1022\] {
+  background: var(--sidebar) !important;
+}
+
+/* ---------- borders: subtle, low-contrast ---------- */
+[data-theme="light"] .border-white\/5,
+[data-theme="light"] .border-white\/10,
+[data-theme="light"] .border-white\/15,
+[data-theme="light"] .border-white\/20,
+[data-theme="light"] .border-white\/25 {
+  border-color: var(--border) !important;
+}
+
+[data-theme="light"] .hover\:border-white\/20:hover,
+[data-theme="light"] .hover\:border-white\/25:hover {
+  border-color: var(--border-strong) !important;
+}
+
+[data-theme="light"] .border-slate-600,
+[data-theme="light"] .border-slate-700 {
+  border-color: var(--border) !important;
+}
+
+/* ---------- tactical olive surfaces & borders ---------- */
+[data-theme="light"] .bg-\[\#556b2f\]\/10,
+[data-theme="light"] .bg-\[\#556b2f\]\/20,
+[data-theme="light"] .bg-\[\#556b2f\]\/25,
+[data-theme="light"] .bg-\[\#556b2f\]\/30,
+[data-theme="light"] .bg-\[\#556b2f\]\/35,
+[data-theme="light"] .bg-\[\#556b2f\]\/40 {
+  background-color: rgba(69, 105, 41, 0.12) !important;
+}
+
+[data-theme="light"] .hover\:bg-\[\#556b2f\]\/50:hover,
+[data-theme="light"] .hover\:bg-\[\#556b2f\]\/60:hover {
+  background-color: rgba(69, 105, 41, 0.22) !important;
+}
+
+[data-theme="light"] .group:hover .group-hover\:bg-\[\#556b2f\]\/45 {
+  background-color: rgba(69, 105, 41, 0.18) !important;
+}
+
+[data-theme="light"] .bg-\[\#9caf88\]\/40 {
+  background-color: rgba(69, 105, 41, 0.30) !important;
+}
+
+[data-theme="light"] .border-\[\#9caf88\],
+[data-theme="light"] .border-\[\#9caf88\]\/30,
+[data-theme="light"] .border-\[\#9caf88\]\/40,
+[data-theme="light"] .border-\[\#9caf88\]\/50,
+[data-theme="light"] .border-\[\#9caf88\]\/60 {
+  border-color: rgba(69, 105, 41, 0.38) !important;
+}
+
+[data-theme="light"] .hover\:border-\[\#9caf88\]\/50:hover,
+[data-theme="light"] .hover\:border-\[\#9caf88\]\/60:hover,
+[data-theme="light"] .hover\:border-\[\#9caf88\]\/70:hover {
+  border-color: rgba(69, 105, 41, 0.55) !important;
+}
+
+[data-theme="light"] .border-\[\#b7cf9a\]\/50 {
+  border-color: rgba(67, 96, 36, 0.55) !important;
+}
+
+[data-theme="light"] .ring-\[\#9caf88\]\/50 {
+  --tw-ring-color: rgba(69, 105, 41, 0.35) !important;
+}
+
+/* ---------- olive gradient CTAs: deepen for white-text contrast ---------- */
+[data-theme="light"] .from-\[\#556b2f\],
+[data-theme="light"] .\!from-\[\#556b2f\] {
+  --tw-gradient-from: #476a2c var(--tw-gradient-from-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+[data-theme="light"] .to-\[\#7a9434\],
+[data-theme="light"] .\!to-\[\#7a9434\],
+[data-theme="light"] .to-\[\#75953b\],
+[data-theme="light"] .\!to-\[\#75953b\],
+[data-theme="light"] .to-\[\#6b8e23\],
+[data-theme="light"] .\!to-\[\#6b8e23\] {
+  --tw-gradient-to: #5e7a2e var(--tw-gradient-to-position) !important;
+}
+
+[data-theme="light"] .hover\:from-\[\#627d35\]:hover,
+[data-theme="light"] .hover\:\!from-\[\#627d35\]:hover {
+  --tw-gradient-from: #51752f var(--tw-gradient-from-position) !important;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to) !important;
+}
+
+[data-theme="light"] .hover\:to-\[\#84a842\]:hover,
+[data-theme="light"] .hover\:\!to-\[\#84a842\]:hover {
+  --tw-gradient-to: #6c8b36 var(--tw-gradient-to-position) !important;
+}
+
+/* ---------- shadows: restrained daylight elevation ---------- */
+[data-theme="light"] .shadow-lg,
+[data-theme="light"] .shadow-xl {
+  box-shadow: 0 16px 34px -18px rgba(26, 36, 30, 0.28) !important;
+}
+
+[data-theme="light"] .shadow-2xl {
+  box-shadow: 0 24px 48px -22px rgba(26, 36, 30, 0.30) !important;
+}
+
+[data-theme="light"] .hover\:shadow-xl:hover {
+  box-shadow: 0 18px 36px -18px rgba(26, 36, 30, 0.30) !important;
+}
+
+[data-theme="light"] .hover\:shadow-2xl:hover {
+  box-shadow: 0 28px 52px -22px rgba(26, 36, 30, 0.32) !important;
+}
+
+/* ---------- controls ---------- */
+[data-theme="light"] .accent-\[\#9caf88\] {
+  accent-color: var(--accent) !important;
+}
+
+/* keyboard focus stays clearly visible on light surfaces */
+[data-theme="light"] :focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--accent) 70%, transparent);
+  outline-offset: 1px;
+}
+
+[data-theme="light"] ::selection {
+  background: color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+/* ---------- keep white text on solid colored surfaces ---------- */
+[data-theme="light"] .hero-cta-btn,
+[data-theme="light"] .hero-cta-btn *,
+[data-theme="light"] .btn-primary,
+[data-theme="light"] .btn-primary *,
+[data-theme="light"] .from-\[\#556b2f\],
+[data-theme="light"] .from-\[\#556b2f\] *,
+[data-theme="light"] .\!from-\[\#556b2f\],
+[data-theme="light"] .\!from-\[\#556b2f\] *,
+[data-theme="light"] button.bg-\[\#556b2f\]\/80,
+[data-theme="light"] .bg-emerald-500,
+[data-theme="light"] .bg-emerald-600,
+[data-theme="light"] .bg-red-500,
+[data-theme="light"] .bg-red-600,
+[data-theme="light"] .bg-amber-500,
+[data-theme="light"] .bg-amber-600,
+[data-theme="light"] .bg-blue-500,
+[data-theme="light"] .bg-blue-600 {
+  color: #ffffff !important;
+}
+
+/* ---------- dark theme (unchanged) ---------- */
+[data-theme="dark"] .text-white {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .bg-white\/5 {
+  background: var(--surface-secondary);
+}
