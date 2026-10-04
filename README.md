@@ -37,8 +37,11 @@ picture. NIRNAYA trains the *decision process* under those conditions: what to t
 what to do despite uncertainty.
 
 **Problem Statement:** SIH26248
+
 **Organization:** Ministry of Defence — Defence Services Staff College (DSSC)
+
 **Category:** Software
+
 **Theme:** Smart Automation
 
 ---
