@@ -1,4 +1,4 @@
-# 🎯 NIRNAYA — Unified Command & Decision Platform
+# 🎯 NIRNAYA — TRAIN BEYOND THE PERFECT PICTURE
 
 > **Multi-Domain Operational Training + Unified Information + Command Decision Support**
 
@@ -532,11 +532,13 @@ Demo link will be added here.
 
 ## 👥 Team
 
-| Name | Role |
-| ---- | ---- |
-| Team Member | Role |
-| Team Member | Role |
-
+  | Name | 
+| `MRUNAL DESHMUKH` | `LEADER` |
+| `TEJASWINI TALOKAR` | 
+| `CHAITANYA DESHPANDE` | 
+| `YASH EKADE` | 
+| `WANSH KOHAD` | 
+| `OM HATEKAR` | 
 ---
 
 <p align="center">
